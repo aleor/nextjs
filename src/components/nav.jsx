@@ -31,6 +31,17 @@ const Nav = () => (
         <a sx={{ color: 'text', fontSize: 3, cursor: 'pointer' }}>notes</a>
       </Link>
     </nav>
+
+    <a
+      sx={{
+        color: 'text',
+        fontSize: 3,
+        cursor: 'pointer',
+      }}
+      href={process.env.SAMPLE_URL}
+    >
+      Google
+    </a>
   </header>
 );
 
