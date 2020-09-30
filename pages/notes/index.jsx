@@ -1,21 +1,38 @@
-import React from 'react';
+/** @jsx jsx */
+import { jsx } from 'theme-ui';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 
-const Notes = () => {
-  const router = useRouter();
+const NotesIndex = () => {
+  const notes = new Array(15)
+    .fill(1)
+    .map((e, i) => ({ id: i, title: `This is my note ${i}` }));
 
   return (
-    <div>
-      <h2>Notes index page</h2>
+    <div sx={{ variant: 'containers.page' }}>
+      <h1>My Notes</h1>
 
-      <Link href="/notes/[id]" as={`/notes/1`}>
-        Go to the first note (parameterized)
-      </Link>
-      <p>Footer</p>
-      <button onClick={e => router.push('/')}>Go Home </button>
+      <div
+        sx={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          flexWrap: 'wrap',
+        }}
+      >
+        {notes.map(note => (
+          <div sx={{ width: '33%', p: 2 }} key={note.id}>
+            <Link href="/notes/[id]" as={`/notes/${note.id}`}>
+              <a sx={{ textDecoration: 'none', cursor: 'pointer' }}>
+                <div sx={{ variant: 'containers.card' }}>
+                  <strong>{note.title}</strong>
+                </div>
+              </a>
+            </Link>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
 
-export default Notes;
+export default NotesIndex;
